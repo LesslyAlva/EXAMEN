@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link href="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.14.4/dist/sweetalert2.min.css
+" rel="stylesheet">
+    <title>REGISTRO</title>
+</head>
+
+<body class="fuente divContainer">
+    <div class="divContainer container-fluid">
+        <div class="row d-flex justify-content-center" style="height: 100vh;">
+            <div class="divLogin col-8 col-sm-6 col-md-4 p-5 my-3">
+                <h5 class="fs-1 text-center">Registrarse</h5>
+                <br>
+                <div>
+                    <form id="Form" method="post">
+                        <div class="form-floating">
+                            <input type="hidden" name="_method" value="POST">
+                            <input id="usuario" class="width100 form-control" placeholder="Usuario" type="text"
+                                name="usuario" required>
+                            <label class="mb-1 formLabel">Usuario</label>
+                        </div>
+                        <br>
+                        <div class="form-floating">
+                            <input id="contrasenia" class="width100 form-control" placeholder="Contraseña" type="password"
+                                name="contrasenia" required>
+                            <label class="mb-1 formLabel">Contraseña</label>
+                        </div>
+                        <br>
+                        <br>
+                        <input class="formButton width100 btn btn-dark" type="submit" value="Registrarse">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.14.4/dist/sweetalert2.all.min.js
+"></script>
+    <!-- <script src="js/script.js"></script> -->
+    <script>
+        document.getElementById("Form").addEventListener("submit", function (event) {
+            event.preventDefault(); // Evita el envío predeterminado del formulario
+
+            // Obtén los valores de usuario y contraseña
+            const usuario = document.getElementById("usuario").value;
+            const contrasenia = document.getElementById("contrasenia").value;
+
+            // Datos de login para enviar a la API
+            const loginData = {
+                usuario: usuario,
+                contrasenia: contrasenia
+            };
+
+            // Llamada a la API de registrar
+            fetch("http://127.0.0.1:8001/api/registrar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(loginData),
+            })
+                .then(response => response.json())
+                .then(data => {
+
+                    localStorage.removeItem("usuario");
+
+                    // Activa el alert en función de la respuesta de la API
+                    if (data.error) {
+
+                        Swal.fire({
+                            icon: "error",
+                            title: "Registro fallido",
+                            text: data.message,
+                        });
+                        
+                    } else {
+                        
+                        localStorage.setItem("usuario", data.data);
+
+                        Swal.fire({
+                            icon: "success",
+                            title: "Registro exitoso",
+                            text: data.message,
+                        }).then(() => {
+                            // Redirección a otra página HTML después del éxito
+                            window.location.href = "Login.html"; // Cambia a la página que desees
+                        });
+                    }
+                })
+            event.target.reset();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+.divContainer {
+    background-color: #160D27;
+}
+
+.divLogin {
+    background-color: #2C1A4D;
+    color: #E2D9F3;
+    border-radius: 10px;
+}
+
+.width100 {
+    width: 100%;
+}
+
+.width40 {
+    width: 40%;
+}
+
+/* .formInput {
+    background-color: #C5B3E6;
+    color: #160D27;
+} */
+
+.formLabel {
+    color: #160D27;
+}
+
+.formButton
+{
+    background-color: #59359A;
+}
+
+/* FUENTES */
+
+.fuente {
+    font-family: "Fira Sans Condensed", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.cursor {
+    cursor:pointer;
+}
+
+/* INPUT */
