@@ -92,16 +92,16 @@
         </div>
     </nav>
 
-    <section class="container d-flex" style="margin-top: 100px;">
+    <section class="container d-flex align-items-center justify-content-center" style="margin-top: 100px;">
 
-        <div class="row">
+        <div class="row" >
 
             <button onclick="document.getElementById('formulario_perfil').reset();" class="btn" type="submit"
                 style="background-color: #6F42C1; color: #E0CFFC;" data-bs-toggle="modal"
                 data-bs-target="#modal">Agregar
                 Perfil</button>
 
-            <table class="table table-dark">
+            <table class="table table-dark table-hover">
                 <thead>
                     <tr>
                         <td>ID</td>
@@ -186,10 +186,10 @@
                 let fila = "<tr>";
                 fila += "<td>" + item.id + "</td>";
                 fila += "<td>" + item.nombre_perfil + "</td>";
-                fila += "<td><button class='btn' type='submit' style='background-color: #6F42C1; color: #E0CFFC;' data-bs-toggle='modal' data-bs-target='#modal' onclick='mostrarPerfil(" + item.id + ")'>Editar</button><button class='btn' type='submit' style='background-color: transparent; color: #E0CFFC; border: 2px solid;' onclick='eliminarPerfil(" + item.id + ")'>Eliminar</button></td>"; //
+                fila += "<td><button class='btn me-4' type='submit' style='background-color: #6F42C1; color: #E0CFFC;' data-bs-toggle='modal' data-bs-target='#modal' onclick='mostrarPerfil(" + item.id + ")'>Editar</button><button class='btn' type='submit' style='background-color: transparent; color: #E0CFFC; border: 2px solid;' onclick='eliminarPerfil(" + item.id + ")'>Eliminar</button></td>"; //
                 fila += "<tr>";
                 tabla.innerHTML += fila;
-            });
+            })
         }
 
         function buscarPerfil() {
